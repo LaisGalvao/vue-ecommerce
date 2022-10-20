@@ -1,5 +1,5 @@
 # Ecommerce front-end
-
+Um ecommerce básico usando Vue.js
 
 ## No que consiste o projeto
 
