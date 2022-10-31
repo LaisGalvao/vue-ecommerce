@@ -2,7 +2,7 @@
   <div>
     <main>
       <div class="title-category-wrapper">
-        <h2>{{ category }}</h2>
+        <h2>{{ $route.params.type.toUpperCase() }}</h2>
         <select name="filterBy" id="filter" v-model="selected">
           <option value="">Ordenar por</option>
           <option v-for="opt in options" :value="opt" :key="opt">{{ opt.text }}</option>
@@ -50,12 +50,6 @@ export default {
   },
   mounted() {
     console.log(this.selected);
-    fetch('https://fakestoreapi.com/products' + this.$route.fullPath)
-      .then(res => res.json())
-      .then(json => {
-        console.log(json); this.allProducts = json
-
-      })
   },
 }
 </script>

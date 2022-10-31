@@ -29,10 +29,10 @@
             </div>
         </div>
         <nav class="nav-links">
-            <a href="/category/electronics">Eletronics</a>
-            <a href="/category/jewelery">Jewelery</a>
-            <a href="/category/men's clothing">Men's clothing</a>
-            <a href="/category/women's clothing">Women's clothing</a>
+            <a @click="goToCategory('electronics')">Eletronics</a>
+            <a @click="goToCategory('jewelery')">Jewelery</a>
+            <a @click="goToCategory(`men's clothing`)">Men's clothing</a>
+            <a @click="goToCategory(`women's clothing`)">Women's clothing</a>
         </nav>
     </header>
 </template>
@@ -73,6 +73,18 @@ export default {
             .then(res => res.json())
             .then(json => { console.log(json); this.allProducts = json })
     },
+    methods: {
+    goToCategory(type) {
+      this.$router.push({path: '/products/category/'+ type})
+      fetch(`https://fakestoreapi.com/products/category/${type}`)
+      .then(res => res.json())
+      .then(json => {
+        console.log(json); this.allProducts = json
+
+      })
+      /* return console.log("até aqui me ajudou o Senhor", id); */
+    }
+  },
 }
 </script>
 
