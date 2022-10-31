@@ -29,7 +29,6 @@ O carrinho da loja contém as seguintes ações:
 
 - Utilizei a [FakeStoreAPI](https://fakestoreapi.com/docs) para consultar os produtos e as categorias;
 - Utilizei a ferramenta [Vue CLI](https://cli.vuejs.org/) para iniciar meu projeto;
-- Apliquei a metodologia de [commits semânticos](https://blog.cubos.io/que-tal-comecar-a-usar-commits-semanticos/);
 
 
 ## Stack
