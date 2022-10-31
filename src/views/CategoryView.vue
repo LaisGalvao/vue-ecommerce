@@ -5,53 +5,62 @@
         <h2>{{ $route.params.type.toUpperCase() }}</h2>
         <select name="filterBy" id="filter" v-model="selected">
           <option value="">Ordenar por</option>
-          <option v-for="opt in options" :value="opt" :key="opt">{{ opt.text }}</option>
+          <option v-for="opt in options" :value="opt" :key="opt">
+            {{ opt.text }}
+          </option>
         </select>
-
       </div>
       <div class="products-wrapper">
         <div class="product" v-for="product in allProducts" :key="product.id">
-          <a class="linkto-product" @click="$router.push({ path: '/product/' + product.id })">
-            <CardProductComponent :id="product.id" :img="product.image" :produto="product.title"
-              :price="parseFloat(product.price)" />
+          <a
+            class="linkto-product"
+            @click="$router.push({ path: '/product/' + product.id })"
+          >
+            <CardProductComponent
+              :id="product.id"
+              :img="product.image"
+              :produto="product.title"
+              :price="parseFloat(product.price)"
+            />
           </a>
-
         </div>
       </div>
-
     </main>
-
   </div>
 </template>
 
 <script>
-import CardProductComponent from '@/components/CardProductComponent.vue';
+import CardProductComponent from "@/components/CardProductComponent.vue";
 export default {
   components: { CardProductComponent },
   data() {
     return {
-      allProducts: [],
       category: this.$route.params.type.toUpperCase(),
       selected: null,
       options: [
-        { value: 'rating', text: 'Avaliação' },
-        { value: 'title', text: 'Nome' },
-        { value: 'price', text: 'Preço' }
+        { value: "rating", text: "Avaliação" },
+        { value: "title", text: "Nome" },
+        { value: "price", text: "Preço" },
       ],
-
-    }
+    };
   },
   computed: {
+    allProducts() {
+      return this.$store.getters.allProducts
+    },
     filteredItems() {
-      return this.allProducts.filter(el => {
-        return el.title === this.selected.value
-      }, this)
-    }
+      return this.allProducts.filter((el) => {
+        return el.title === this.selected.value;
+      }, this);
+    },
+  },
+  beforeMount() {
+    /*  this.allProducts = this.$store.getters.allProducts */
   },
   mounted() {
     console.log(this.selected);
   },
-}
+};
 </script>
 
 <style scoped lang="scss">

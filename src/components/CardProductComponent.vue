@@ -29,7 +29,7 @@ export default {
       required: true
     },
     price: {
-      type: String || Number,
+      type: Number,
       default: String,
       required: true
     }

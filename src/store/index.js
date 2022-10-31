@@ -21,6 +21,16 @@ export default new Vuex.Store({
         cartCheckoutitems: state => state.cartCheckoutitems
     },
     mutations: {
+        getAllProducts: (state, payload) => {
+            fetch(
+                `https://fakestoreapi.com/products/category/${payload}`
+            )
+                .then((res) => res.json())
+                .then((json) => {
+                    state.allProducts = json
+
+                })
+        },
         getcartCheckoutitems: (state, payload) => {
             state.cartCheckoutitems = payload
         },
@@ -61,6 +71,9 @@ export default new Vuex.Store({
         },
     },
     actions: {
+        getAllProducts(context, payload) {
+            context.commit("getAllProducts", payload)
+        },
         getcartCheckoutitems(context, payload) {
             context.commit("getcartCheckoutitems", payload)
         },
